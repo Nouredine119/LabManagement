@@ -7,6 +7,10 @@ const connectLivereload = require('connect-livereload');
 const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
 const signupController = require('./controllers/signup');
+const session = require('express-session');
+
+
+
 
 const app = express();
 const port = 3000;

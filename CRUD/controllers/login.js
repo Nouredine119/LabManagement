@@ -10,14 +10,18 @@ const postLogin = async (req, res) => {
     try {
         const user = await User.findOne({ email: email });
 
-        if (!user || user.password !== password) {
-            return res.status(401).send('Identifiants incorrects');
+        if (!user) {
+            return res.status(401).send('Adresse e-mail incorrecte');
         }
 
-        // Authentification réussie, stocker l'utilisateur dans la session
+        const isValidPassword = await user.isValidPassword(password);
+
+        if (!isValidPassword) {
+            return res.status(401).send('Mot de passe incorrect');
+        }
+
         req.session.user = user;
-        
-        res.redirect('/dashboard'); // Rediriger vers une page de tableau de bord par exemple
+        res.redirect('/home'); // Rediriger vers la page "homa" après une connexion réussie
     } catch (error) {
         console.error('Erreur de connexion :', error);
         res.status(500).send('Une erreur est survenue lors de la connexion');
