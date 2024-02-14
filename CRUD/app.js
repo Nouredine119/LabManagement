@@ -5,6 +5,7 @@ const livereload = require('livereload');
 const connectLivereload = require('connect-livereload');
 
 const signupRoutes = require('./routes/signup');
+const loginRoutes = require('./routes/login');
 const signupController = require('./controllers/signup');
 
 const app = express();
@@ -26,6 +27,7 @@ liveReloadServer.server.once('connection', () => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use('/', loginRoutes);
 app.use('/', signupRoutes);
 app.get('/admin', signupController.adminPage);
 app.get('/guest', signupController.guestPage);
