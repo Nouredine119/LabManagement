@@ -13,6 +13,11 @@ const session = require('express-session');
 
 
 const app = express();
+app.use(session({
+    secret: 'AZERTYUIOP', 
+    resave: false,
+    saveUninitialized: true
+}));
 const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));

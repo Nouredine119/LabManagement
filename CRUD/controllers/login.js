@@ -6,7 +6,7 @@ const getLoginPage = (req, res) => {
 
 const postLogin = async (req, res) => {
     const { email, password } = req.body;
-
+    const arr = await User.find();
     try {
         const user = await User.findOne({ email: email });
 
@@ -21,7 +21,7 @@ const postLogin = async (req, res) => {
         }
 
         req.session.user = user;
-        res.redirect('/home'); // Rediriger vers la page "homa" après une connexion réussie
+        res.render('home',{arr}); 
     } catch (error) {
         console.error('Erreur de connexion :', error);
         res.status(500).send('Une erreur est survenue lors de la connexion');

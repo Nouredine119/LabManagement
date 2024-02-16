@@ -39,7 +39,7 @@
         <ul class="list-group mt-3">
             <% arr.forEach((user) => { %>
                 <li class="list-group-item">
-                    <%= user.firstName %> <%= user.lastName %> - <%= user.profession %> - <%= user.age %> years old - <%= user.affiliation %> - <%= user.type %>
+                    <%= user.nom %> <%= user.prenom %>
                     <a href="/<%= user._id %>/edit" class="btn btn-secondary btn-sm ml-2">Edit</a>
                     <a href="/<%= user._id %>/delete" class="btn btn-danger btn-sm ml-2">Delete</a>
                 </li>
